@@ -1,6 +1,6 @@
-# Sponsored Search Causal Impact
+# Measuring the Incremental Impact of Sponsored Search
 
-A Difference-in-Differences (DiD) case study estimating the incremental traffic created by branded paid-search advertising.
+An R Difference-in-Differences case study that estimates how much website traffic and ROI branded paid-search advertising actually creates.
 
 ## Business question
 
