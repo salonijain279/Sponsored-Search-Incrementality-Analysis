@@ -3,5 +3,8 @@
 .DS_Store
 data/*.csv
 !data/README.md
+!data/synthetic_search_traffic.csv
 outputs/*
 !outputs/.gitkeep
+!outputs/*.csv
+!outputs/*.png

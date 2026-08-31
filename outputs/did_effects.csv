@@ -1,0 +1,7 @@
+"specification","outcome","estimate","std_error","p_value"
+"Basic DiD","total_traffic",-1873.77777777778,1269.37981811345,0.145136483096265
+"Platform + week fixed effects","total_traffic",-1873.77777777778,42.744633296419,6.04362253631588e-38
+"Basic DiD","organic_traffic",4430.5,905.123886889129,7.75530747308604e-06
+"Platform + week fixed effects","organic_traffic",4430.5,38.1994698255028,2.34306996863622e-56
+"Basic DiD","sponsored_traffic",-6304.27777777778,366.212127917338,6.8851063729497e-25
+"Platform + week fixed effects","sponsored_traffic",-6304.27777777778,14.7156598677161,2.69040910536625e-81
