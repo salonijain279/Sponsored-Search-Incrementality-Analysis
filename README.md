@@ -1,14 +1,14 @@
 # Measuring the Incremental Impact of Sponsored Search
 
-An R Difference-in-Differences case study that estimates how much website traffic and ROI branded paid-search advertising actually creates.
+I used this R case study to estimate how much website traffic and ROI branded paid-search advertising actually created, rather than crediting every sponsored click to the campaign.
 
-## Business question
+## The question I asked
 
 When sponsored ads are paused on one search platform, how much traffic is truly lost after accounting for organic substitution and the market-wide time trend?
 
 ## Why causal inference matters
 
-A naive ROI calculation credits every sponsored click to advertising. That ignores visitors who would have clicked the organic result anyway. This analysis uses an ad interruption as a natural experiment:
+A naive ROI calculation credits every sponsored click to advertising. I wanted to account for visitors who might have clicked the organic result anyway, so I treated an ad interruption as a natural experiment:
 
 - one platform is the treated group;
 - three unaffected platforms form the comparison group;
@@ -17,7 +17,7 @@ A naive ROI calculation credits every sponsored click to advertising. That ignor
 
 ## Data
 
-The included generator creates a **synthetic dataset with the same analytical structure as the academic case but no copied case observations or instructional material**.
+I wrote the included generator to create a synthetic dataset with the same analytical structure as the academic case. It contains no copied observations or instructional material.
 
 ## Run
 
