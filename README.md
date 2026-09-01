@@ -13,7 +13,7 @@ I used an interruption in one platform's sponsored ads as a natural experiment. 
 
 ## Analytical design
 
-The public version uses a deterministic synthetic dataset with the same panel structure as my coursework analysis:
+The analysis uses a deterministic synthetic panel designed around a sponsored-search interruption:
 
 - 16 weeks of organic and sponsored traffic
 - one treated search platform where ads stop in Week 13
@@ -84,7 +84,3 @@ outputs/                Model estimates, diagnostics, and charts
 ## Interpretation boundary
 
 The dataset is synthetic, so its estimates demonstrate the method rather than provide evidence about a real campaign. A production analysis would also require enough treated and comparison units for defensible inference, credible parallel trends, no treatment-specific concurrent shocks, and a clear definition of conversion value and media cost.
-
-## Coursework context
-
-This project originated in an MSBA 6441 causal-inference assignment on sponsored-search incrementality. I rewrote the public version around generated data, modular R functions, reproducible outputs, and automated checks. Original case observations, instructions, and submission files are not included.

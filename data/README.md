@@ -10,4 +10,4 @@ Run the following command to reproduce the file:
 Rscript R/generate_data.R
 ```
 
-The dataset is synthetic. No original classroom case observations are redistributed.
+The dataset is entirely synthetic and contains no observations from a real campaign.
