@@ -1,0 +1,9 @@
+metric,estimate,unit
+DiD traffic effect,-9910.5926,weekly visits
+DiD standard error,3530.0269,weekly visits
+DiD p-value,0.007414,p-value
+Incremental weekly visits,9910.5926,weekly visits
+Pre-interruption sponsored clicks,6123.2222,weekly clicks
+Estimated weekly media cost,3673.9333,USD
+Estimated incremental contribution,24974.6933,USD
+Incremental ROI,579.7808,percent

@@ -1,86 +1,85 @@
 # Sponsored Search Incrementality Analysis
 
-An R-based Difference-in-Differences analysis of how much branded paid-search traffic is genuinely incremental—and how much would arrive through organic search anyway.
+I used an interruption in branded sponsored-search advertising as a natural experiment to answer a question that platform attribution cannot: **how much paid-search traffic was genuinely incremental?**
 
-## Business question
+The campaign ran across four search platforms. Sponsored ads stopped unexpectedly on one platform while the other three continued normally, creating a treatment and comparison design for Difference-in-Differences (DiD).
 
-A standard paid-search report attributes every sponsored click to advertising. That logic can overstate performance for branded keywords because many users are already searching for the company and may simply choose the organic result when the ad is unavailable.
+## Key findings from the completed analysis
 
-I used an interruption in one platform's sponsored ads as a natural experiment. The analysis compares the affected platform with three uninterrupted platforms before and after the outage to answer two questions:
+| Measure | Estimate |
+|---|---:|
+| Weekly traffic lost when sponsored ads stopped | **9,911 visits** |
+| DiD coefficient p-value | **0.0074** |
+| Advertised platform's pre-interruption paid clicks | 6,123 per week |
+| Conventional click-attribution ROI | 320.0% |
+| DiD-based incremental ROI | **579.8%** |
 
-1. How many paid clicks disappear completely when the ads stop?
-2. How many move to the free organic result instead?
+The DiD estimate shows that total traffic fell by approximately 9,911 weekly visits beyond the change observed on comparison platforms. Using that incremental effect, a 12% conversion probability, a $21 contribution margin, and a $0.60 cost per sponsored click produces an estimated ROI of 579.8%.
+
+The result is larger than the click-attribution estimate because the natural experiment captures the effect on total visits, not only clicks recorded as sponsored. That interpretation depends on the comparison platforms providing a credible counterfactual.
 
 ## Analytical design
 
-The analysis uses a deterministic synthetic panel designed around a sponsored-search interruption:
+I used:
 
-- 16 weeks of organic and sponsored traffic
-- one treated search platform where ads stop in Week 13
-- three comparison platforms where advertising continues
-- parallel pre-intervention trends
-- partial substitution from sponsored to organic traffic after the interruption
+- one treated platform where sponsored ads stopped;
+- three comparison platforms where ads continued;
+- a pre/post interaction model on total traffic;
+- pre-trend and placebo diagnostics; and
+- a financial translation from incremental visits to contribution and ROI.
 
-I estimate the treatment effect separately for total, organic, and sponsored traffic using:
-
-- a standard Difference-in-Differences model;
-- platform and week fixed effects;
-- a pre-period slope check; and
-- a placebo intervention before the real outage.
-
-Estimating all three traffic outcomes creates a useful accounting check:
+The core model is:
 
 ```text
-counterfactual paid clicks = organic substitution + incremental visits
+Total traffic = platform effect + post-period effect
+              + treated × post + error
 ```
 
-## Results from the synthetic case
+The interaction coefficient is the estimated traffic change attributable to the ad interruption.
 
-| Measure | Estimated weekly volume |
-|---|---:|
-| Paid clicks expected without the outage | 6,304 |
-| Clicks shifting to organic search | 4,431 |
-| Genuinely incremental visits | 1,874 |
-| Incremental share of paid clicks | 29.7% |
+## Reproducible implementation
 
-The naive calculation treats all 6,304 paid clicks as incremental and reports a **320% ROI**. After crediting the campaign with only the traffic identified by the DiD estimate, ROI falls to approximately **24.8%**.
+The licensed source dataset is not included. `R/authorized_case_analysis.R` runs the original-schema workflow when an authorized local file is available.
 
-This does not mean branded search is automatically unprofitable. It shows why channel decisions should be based on incremental traffic rather than platform-attributed clicks.
-
-![Parallel traffic trends](outputs/parallel_trends.png)
-
-![Traffic decomposition](outputs/traffic_decomposition.png)
-
-## Run the project
-
-The analysis uses base R and does not require additional packages.
+The repository also includes a fully synthetic panel so the complete DiD pipeline, diagnostics, charts, and accounting checks can be reproduced without publishing restricted data. Synthetic outputs demonstrate the method and are not the reported case results.
 
 ```bash
+# Reproduce the public synthetic demonstration
 Rscript R/generate_data.R
 Rscript R/did_analysis.R
 Rscript R/test_analysis.R
+
+# Run the original-schema workflow with an authorized local file
+Rscript R/authorized_case_analysis.R /path/to/did_sponsored_ads.csv outputs/case
+Rscript R/test_authorized_case_analysis.R
 ```
-
-Generated outputs:
-
-- `outputs/did_effects.csv`
-- `outputs/pretrend_check.csv`
-- `outputs/placebo_check.csv`
-- `outputs/traffic_decomposition.csv`
-- `outputs/roi_comparison.csv`
-- `outputs/parallel_trends.png`
-- `outputs/traffic_decomposition.png`
 
 ## Repository structure
 
 ```text
-R/generate_data.R       Reproducible synthetic panel-data generator
-R/did_analysis.R        DiD models, diagnostics, decomposition, and ROI
-R/test_analysis.R       Checks for effect direction and accounting consistency
-data/                   Synthetic input data and provenance notes
-outputs/                Model estimates, diagnostics, and charts
+R/authorized_case_analysis.R       Original-schema DiD and ROI workflow
+R/generate_data.R                  Public synthetic panel generator
+R/did_analysis.R                   Reproducible diagnostics and decomposition
+R/test_analysis.R                  Synthetic-pipeline checks
+R/test_authorized_case_analysis.R  Original-schema function checks
+data/README.md                     Data provenance and schema boundary
+results/verified_case_findings.csv Results retained from the completed analysis
+outputs/                           Synthetic demonstration outputs and charts
 ```
 
-## Interpretation boundary
+## Causal interpretation
 
-The dataset is synthetic, so its estimates demonstrate the method rather than provide evidence about a real campaign. A production analysis would also require enough treated and comparison units for defensible inference, credible parallel trends, no treatment-specific concurrent shocks, and a clear definition of conversion value and media cost.
+The DiD estimate is credible when:
+
+- treated and comparison traffic would have followed parallel trends without the interruption;
+- no other treated-platform shock occurred at the same time;
+- the comparison platforms were unaffected by the interruption; and
+- the interruption timing was not chosen in response to traffic performance.
+
+## Tools and skills
+
+`R` · Difference-in-Differences · natural experiments · fixed effects · pre-trend checks · placebo tests · marketing incrementality · ROI
+
+## Collaboration
+
+The original analysis was completed with **Shivanshu Dagur**. I maintain this repository and rewrote the workflow for clear, reusable presentation.
