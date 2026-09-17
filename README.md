@@ -20,6 +20,14 @@ The result is larger than the click-attribution estimate because the natural exp
 
 ## Analytical design
 
+```mermaid
+flowchart LR
+    A[1 treated + 3 comparison platforms] --> B[Pre/post DiD interaction model]
+    B --> C[Pre-trend & placebo diagnostics]
+    C --> D[Incremental traffic estimate]
+    D --> E[Financial translation to ROI]
+```
+
 Design:
 
 - one treated platform where sponsored ads stopped;
