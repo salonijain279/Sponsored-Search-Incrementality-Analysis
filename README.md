@@ -1,6 +1,6 @@
 # Sponsored Search Incrementality Analysis
 
-I used an interruption in branded sponsored-search advertising as a natural experiment to answer a question that platform attribution cannot: **how much paid-search traffic was genuinely incremental?**
+An interruption in branded sponsored-search advertising is used as a natural experiment to answer a question that platform attribution cannot: **how much paid-search traffic was genuinely incremental?**
 
 The campaign ran across four search platforms. Sponsored ads stopped unexpectedly on one platform while the other three continued normally, creating a treatment and comparison design for Difference-in-Differences (DiD).
 
@@ -20,7 +20,7 @@ The result is larger than the click-attribution estimate because the natural exp
 
 ## Analytical design
 
-I used:
+Design:
 
 - one treated platform where sponsored ads stopped;
 - three comparison platforms where ads continued;
@@ -82,4 +82,4 @@ The DiD estimate is credible when:
 
 ## Collaboration
 
-The original analysis was completed with **Shivanshu Dagur**. I maintain this repository and rewrote the workflow for clear, reusable presentation.
+The original analysis was completed with **Shivanshu Dagur**; this repository is maintained by Saloni Jain, who rewrote the workflow for clear, reusable presentation.
